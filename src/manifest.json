@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "AWS coloured account name",
+  "version": "1.2.1",
+  "description": "Add a background colour to the account name in the AWS console.",
+  "icons":
+  {
+    "48": "icons/aws-colours-48.png",
+    "96": "icons/aws-colours-96.png"
+  },
+  "content_scripts":
+  [
+    {
+      "matches":
+      [
+        "https://console.aws.amazon.com/*",
+        "https://*.console.aws.amazon.com/*"
+      ],
+      "js":
+      [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_specific_settings": {
+  "gecko": {
+    "id": "aws-coloured-account-name@vijge.net"
+  }
+}
+}
