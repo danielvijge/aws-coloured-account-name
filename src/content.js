@@ -16,6 +16,7 @@ const accInfo = window.wrappedJSObject.ConsoleNavService.AccountInfo;
 if (accInfo && accInfo.roleDisplayNameAccount == undefined) {
     Object.assign(info, accInfo);
     let userMenu = document.querySelector('span[data-testid="awsc-nav-account-menu-button"] span');
+    let accountName = info.loginDisplayNameAccount;
    
     if (accInfo.loginDisplayNameUser.includes('AWSReservedSSO_')) {
         role = accInfo.loginDisplayNameUser.substring(15);
@@ -23,9 +24,10 @@ if (accInfo && accInfo.roleDisplayNameAccount == undefined) {
         userMenu.textContent = role + ' @ ' + info.loginDisplayNameAccount;
     }
     else {
-        userMenu.textContent = info.loginDisplayNameAccount;
+        userMenu.textContent = info.loginDisplayNameUser;
+        accountName = info.loginDisplayNameUser
     }
-    userMenu.style.backgroundColor = getColour(info.loginDisplayNameAccount);
+    userMenu.style.backgroundColor = getColour(accountName);
     userMenu.style.color = '#16191f';
     userMenu.style.borderRadius = '24px';
     userMenu.style.paddingLeft = '10px';

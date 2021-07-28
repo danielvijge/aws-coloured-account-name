@@ -2,4 +2,5 @@
 
 VERSION=`cat src/manifest.json | jq '.version' -r`
 
-zip -r aws-coloured-account-name-$VERSION.xpi src/* --exclude '*.DS_Store*'
+cd src
+zip -r ../aws-coloured-account-name-$VERSION.xpi ./* --exclude '*.DS_Store*'
