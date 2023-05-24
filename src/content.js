@@ -25,27 +25,31 @@ function getBackgroundColour(accountName, role) {
     return '#918f8c'; // Grey
 }
 
-const info = {};
-const accInfo = window.wrappedJSObject.ConsoleNavService.AccountInfo;
-let role = '';
+function setAwsColours() {
+    const info = {};
+    const accInfo = window.wrappedJSObject.ConsoleNavService.AccountInfo;
+    let role = '';
 
-if (accInfo && accInfo.roleDisplayNameAccount == undefined) {
-    Object.assign(info, accInfo);
-    let userMenu = document.querySelector('span[data-testid="awsc-nav-account-menu-button"] span');
-    let accountName = info.loginDisplayNameAccount;
-   
-    if (accInfo.loginDisplayNameUser.includes('AWSReservedSSO_')) {
-        role = accInfo.loginDisplayNameUser.substring(15);
-        role = role.substring(0, role.indexOf('_'));
-        userMenu.textContent = role + ' @ ' + info.loginDisplayNameAccount;
+    if (accInfo && accInfo.roleDisplayNameAccount == undefined) {
+        Object.assign(info, accInfo);
+        let userMenu = document.querySelector('span[data-testid="awsc-nav-account-menu-button"] span');
+        let accountName = info.loginDisplayNameAccount;
+       
+        if (accInfo.loginDisplayNameUser.includes('AWSReservedSSO_')) {
+            role = accInfo.loginDisplayNameUser.substring(15);
+            role = role.substring(0, role.indexOf('_'));
+            userMenu.textContent = role + ' @ ' + info.loginDisplayNameAccount;
+        }
+        else {
+            userMenu.textContent = info.loginDisplayNameUser;
+            accountName = info.loginDisplayNameUser
+        }
+        userMenu.style.backgroundColor = getBackgroundColour(accountName, role);
+        userMenu.style.color = '#16191f';
+        userMenu.style.borderRadius = '24px';
+        userMenu.style.paddingLeft = '10px';
+        userMenu.style.paddingRight = '10px';
     }
-    else {
-        userMenu.textContent = info.loginDisplayNameUser;
-        accountName = info.loginDisplayNameUser
-    }
-    userMenu.style.backgroundColor = getColour(accountName, role);
-    userMenu.style.color = '#16191f';
-    userMenu.style.borderRadius = '24px';
-    userMenu.style.paddingLeft = '10px';
-    userMenu.style.paddingRight = '10px';
 }
+
+setTimeout(setAwsColours, 5000);
