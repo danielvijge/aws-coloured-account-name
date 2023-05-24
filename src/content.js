@@ -1,5 +1,5 @@
 function getBackgroundColour(accountName, role) {
-    if (role.includes('Non-Production')) {
+    if (role.includes('NonProduction')) {
         return '#b7ca9d'; // Green
     }
 
