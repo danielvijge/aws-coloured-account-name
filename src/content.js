@@ -34,6 +34,7 @@ function setAwsColours() {
         Object.assign(info, accInfo);
         let userMenu = document.querySelector('span[data-testid="awsc-nav-account-menu-button"] span');
         let accountName = info.loginDisplayNameAccount;
+        let roleName = document.querySelector('div[data-testid="'+ info.loginDisplayNameUser+'"]');
        
         if (accInfo.loginDisplayNameUser.includes('AWSReservedSSO_')) {
             role = accInfo.loginDisplayNameUser.substring(15);
@@ -49,6 +50,9 @@ function setAwsColours() {
         userMenu.style.borderRadius = '24px';
         userMenu.style.paddingLeft = '10px';
         userMenu.style.paddingRight = '10px';
+        userMenu.parentElement.style.height = 'auto';
+
+        roleName.style.display = 'none';
     }
 }
 
